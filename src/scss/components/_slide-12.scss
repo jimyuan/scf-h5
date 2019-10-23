@@ -1,0 +1,105 @@
+@charset 'UTF-8';
+
+.slide-12 {
+  text-align: center;
+
+  .matrix-wrap {
+    @include abs-layout;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: flat;
+    backface-visibility: visible;
+  }
+  // 底图红环
+  .matrix-bubs {
+    @include size(300px);
+
+    background: url('./assets/matrix-circle.png') no-repeat center / cover;
+    animation: 5s infinite linear both;
+  }
+
+  .matrix-circle {
+    @include size(300px);
+    @include absolute(top 50% left 50%);
+
+    margin-left: -150px;
+    margin-top: -150px;
+    background: url('./assets/ebk-logo.png') no-repeat center / 40%;
+
+    > div {
+      @include absolute(right -15px top 115px);
+      @include size(70px);
+
+      will-change: transform, opacity;
+      transform-origin: -105px 35px;
+      transition: transform 1.5s 0.5s $timing, opacity 2s;
+      opacity: 0;
+
+      > img {
+        will-change: transform;
+        max-width: 100%;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: 320px) {
+    .matrix-bubs {
+      @include size(300px * 0.85);
+    }
+    .matrix-circle {
+      @include size(300px * 0.85);
+
+      margin-left: -300px * 0.85 / 2;
+      margin-top: -300px * 0.85 / 2;
+
+      > div {
+        transform-origin: -80px 15px;
+      }
+
+      > img {
+        @include size(70px * 0.85);
+      }
+    }
+  }
+
+  &.swiper-slide-active {
+    .matrix-bubs {
+      animation-name: circle-z30;
+    }
+
+    .matrix-circle {
+
+      > div {
+        opacity: 1;
+      }
+
+      @for $i from 1 through 7 {
+        > div:nth-child(#{$i}) {
+          transform: rotateZ(51deg * ($i - 1));
+          // 个别调整
+          @if $i == 3 {
+            transform: translateY(-15%) rotateZ(51deg * ($i - 1));
+          }
+          @if $i == 4 {
+            transform: translateX(10%) rotateZ(51deg * ($i - 1));
+          }
+          @if $i == 5 {
+            transform: translateX(15%) rotateZ(51deg * ($i - 1));
+          }
+          @if $i == 6 {
+            transform: translateX(10%) translateY(30%) rotateZ(51deg * ($i - 1));
+          }
+          @if $i == 7 {
+            transform: translateX(10%) translateY(30%) rotateZ(51deg * ($i - 1));
+          }
+          > img {
+            transform: rotateZ(-51deg * ($i - 1));
+          }
+        }
+      }
+    }
+  }
+}

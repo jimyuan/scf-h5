@@ -1,0 +1,80 @@
+@charset 'UTF-8';
+
+// 设计稿 position 与实际定位转换
+@mixin ui2page($width, $vertical, $horizon) {
+  width: percentage($width / 2 / 375);
+  top: percentage(($vertical + 90) / 2 / 667);
+  left: percentage($horizon / 2 / 375);
+}
+
+.as-bubbles {
+  position: absolute;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 0.8s;
+  animation: 7s infinite alternate linear backwards;
+
+  &:nth-of-type(2n) {
+    animation-direction: alternate-reverse;
+  }
+
+  &:nth-of-type(1) {
+    @include ui2page(170, 200, 100);
+    transition-delay: 0.7s;
+    animation-delay: 0.7s;
+  }
+
+  &:nth-of-type(2) {
+    @include ui2page(144, 470, 75);
+    transition-delay: 0.9s;
+    animation-delay: 0.9s;
+  }
+
+  &:nth-of-type(3) {
+    @include ui2page(110, 548, 182);
+    transition-delay: 1.1s;
+    animation-delay: 1.1s;
+  }
+
+  &:nth-of-type(4) {
+    @include ui2page(224, 318, 270);
+    transition-delay: 1.3s;
+    animation-delay: 1.3s;
+  }
+
+  &:nth-of-type(5) {
+    @include ui2page(224, 180, 418);
+    transition-delay: 1.5s;
+    animation-delay: 1.5s;
+  }
+
+  &:nth-of-type(6) {
+    @include ui2page(170, 460, 506);
+    transition-delay: 1.7s;
+    animation-delay: 1.7s;
+  }
+}
+
+.slide-08 {
+  .as-tags {
+    @include absolute(left percentage(170 / 2 / 375) bottom percentage(286 / 2 / 667));
+
+    >.as-tag {
+      line-height: 2;
+      font-size: 18px;
+    }
+
+    > .as-tag:last-child {
+      display: block;
+      margin-top: 0.5em;
+    }
+  }
+}
+
+// 动画定义
+.swiper-slide-active {
+  .as-bubbles {
+    opacity: 1;
+    animation-name: float-y;
+  }
+}

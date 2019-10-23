@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+
+.slide-13 {
+  .wrap {
+    /* @include abs-layout; */
+  }
+
+  .head-text {
+    @include size(386px / 2, 32px);
+
+    margin: 74px auto 12px;
+    text-align: right;
+    font-size: 12px;
+    line-height: 32px;
+    background:
+      url('./assets/ebk-logo.png') no-repeat 0 center / auto 100%,
+      linear-gradient(to right, #fff 50%, transparent 0) no-repeat 52% center / 2px 70%;
+
+    + p {
+      will-change: transform;
+      animation: both 1s 0.5s;
+      text-align: center;
+    }
+  }
+
+  .url,
+  .tel {
+    margin: auto;
+    padding-left: 3em;
+    width: 9em;
+    font-size: 12px;
+    line-height: 20px;
+    background: no-repeat 0 0 / auto 100%;
+  }
+
+  .qr-group {
+    @include absolute(bottom 2em left 50%);
+
+    transform: translateX(-50%);
+  }
+
+  .tel {
+    margin-top: 2em;
+    background-image: url('./assets/icon-tel.png');
+  }
+
+  .url {
+    margin-top: 1em;
+    background-image: url('./assets/icon-global.png');
+  }
+
+  .qr-code {
+    width: 8em;
+    margin-top: 10em;
+    margin: auto;
+    will-change: transform;
+    animation: both 1s 2s;
+  }
+
+  .laser-launch {
+    height: 60px;
+    animation: 1.5s 0.5s both linear infinite;
+  }
+
+  .launch-time {
+    text-align: center;
+    margin: 0;
+    will-change: transform;
+    animation: 1s 1.5s both;
+  }
+
+  &.swiper-slide-active {
+    .head-text + p,
+    .qr-code {
+      animation-name: zoom-in;
+    }
+
+    .launch-time {
+      animation-name: zoom-in;
+    }
+
+    .laser-launch {
+      animation-name: laser-through;
+    }
+  }
+}

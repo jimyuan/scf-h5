@@ -1,0 +1,92 @@
+@charset 'UTF-8';
+
+.laser-lines {
+  @include abs-layout;
+
+  background: linear-gradient(transparent, rgba($high-light, 0.6)) 0 26%, linear-gradient(transparent, rgba($high-light, 0.6)) 0 74%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+
+  > img {
+    will-change: transform;
+    position: absolute;
+    height: 60px;
+    animation: linear infinite 0s 0.5s backwards;
+
+    &:first-child {
+      top: 26%;
+      margin-top: -30px;
+      animation-duration: 1.1s;
+    }
+
+    &:last-child {
+      bottom: 26%;
+      margin-bottom: -30px;
+      animation-duration: 1.7s;
+    }
+  }
+}
+
+.watch-zone {
+  @include size(375px / 2);
+  @include absolute(left 50% top 40px + 45);
+
+  transform: translateX(-50%);
+
+  > img {
+    width: 100%;
+    position: absolute;
+    will-change: transform;
+    animation: infinite linear;
+
+    &:nth-child(1) {
+      @include size(auto, 375px / 2);
+      right: -375px / 8 * 1.414;
+      bottom: -375px / 8 * 1.414;
+      transform-origin: -20px 20px;
+      animation-duration: 7.3s;
+    }
+
+    &:nth-child(2) {
+      top: 20px;
+      animation-duration: 13s;
+    }
+
+    &:nth-child(3) {
+      animation-duration: 7.6s;
+    }
+
+    &:nth-child(4) {
+      animation-duration: 17.7s;
+    }
+
+    &:nth-child(5) {
+      animation-duration: 8.3s;
+    }
+  }
+}
+
+.cloud-tags {
+  @include size(80%, auto);
+  @include absolute(bottom 114px left 50%);
+  transform: translateX(-50%);
+}
+
+.risk-tag {
+  @include absolute(left 50% top percentage((513 + 90) / 2 / 667));
+
+  margin-left: -22%;
+  animation: 0.5s 0.5s backwards;
+}
+
+.slide-09.swiper-slide-active {
+  .watch-zone > img {
+    animation-name: circle-z;
+  }
+  .risk-tag {
+    animation-name: zoom-out-in;
+  }
+  .laser-lines > img {
+    animation-name: laser-through;
+  }
+}

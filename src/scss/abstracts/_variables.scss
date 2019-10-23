@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+$nav-height: 45px !default;
+
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+
+$high-light: #d4371d;
+
+$z-layers:(
+  'pwd-ass': 15,
+  'top-nav': 10,
+  'slide-menu': 10,
+  'burger': 15,
+  'message-box': 20,
+  'tip-arrow': 8,
+  'sub-swiper-arrow': 10
+);
+
+$timing: cubic-bezier(0,.80,.07,.90);
+
+$flex-timing: cubic-bezier(0.27, 1.5, 0.91, 1.1);

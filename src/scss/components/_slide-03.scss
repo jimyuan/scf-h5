@@ -1,0 +1,71 @@
+@charset 'UTF-8';
+
+.slide-03 {
+  .planet {
+    @include size(102px);
+    @include absolute(left 50% top percentage(224/ 1204));
+    animation: 3s linear;
+  }
+  .astronaut {
+    @include absolute(right percentage(120 / 750) bottom percentage(100 / 1207));
+
+    width: 98px;
+    will-change: transform, opacity;
+    animation: 3s 1s linear, 8s 1s linear infinite alternate;
+    animation-fill-mode: both;
+  }
+  .subs-part {
+    > span {
+      position: absolute;
+      width: 32px;
+      will-change: transform;
+      animation: 0.3s 1s $timing both;
+
+      &:first-of-type {
+        left: 38%;
+        top: percentage(130 / 1204);
+      }
+
+      &:last-of-type {
+        right: 38%;
+        top: percentage(394 / 1204);
+      }
+    }
+    // 竖光
+    > img  {
+      @include absolute(left 50% top 66px);
+
+      width: 128px;
+      margin-left: -64px;
+      will-change: transform;
+      animation: 0.5s 0.5s ease-out both;
+    }
+  }
+
+  &.swiper-slide-active {
+    .planet {
+      animation-name: fade-in;
+    }
+
+    .astronaut {
+      animation-name: fade-in, float-y;
+    }
+
+    .subs-part {
+      > span {
+        &:first-of-type {
+          animation-name: subs-out-down;
+        }
+
+        &:last-of-type {
+          animation-name: subs-out-up;
+          animation-delay: 1.3s;
+        }
+      }
+      // 竖光
+      > img  {
+        animation-name: slide-top-in;
+      }
+    }
+  }
+}

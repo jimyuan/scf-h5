@@ -1,0 +1,103 @@
+@charset 'UTF-8';
+
+.slide-11 {
+  text-align: center;
+
+  .matrix-desc {
+    @include absolute;
+
+    font-size: 12px;
+    margin: 0;
+    will-change: opacity;
+    animation: 1s linear both;
+
+    dt {
+      padding-left: 0.25em;
+      border-left: 2px solid #eb663c;
+      margin-bottom: 8px;
+    }
+
+    dd {
+      margin: 0;
+      padding-left: 0.25em;
+      color: #888;
+      line-height: 1.2;
+      border-left: 2px solid transparent;
+    }
+
+    &:nth-of-type(1) {
+      top: percentage(356 / 1206);
+      left: percentage(116 / 750);
+    }
+
+    &:nth-of-type(2) {
+      top: percentage(560 / 1206);
+      left: percentage(62 / 750);
+    }
+
+    &:nth-of-type(3) {
+      top: percentage(785 / 1206);
+      left: percentage(138 / 750);
+    }
+
+    &:nth-of-type(4) {
+      top: percentage(770 / 1206);
+      right: percentage(122 / 750);
+    }
+
+    &:nth-of-type(5) {
+      top: percentage(560 / 1206);
+      right: percentage(80 / 750);
+    }
+
+    &:nth-of-type(6) {
+      top: percentage(350 / 1206);
+      right: percentage(122 / 750);
+    }
+  }
+
+  .shield {
+    @include abs-layout;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    animation: 0.5s 2s both $flex-timing;
+
+    > img {
+      width: 35%;
+    }
+
+    .halo {
+      position: absolute;
+      width: 194px;
+      will-change: transform;
+      animation: 2s 2.5s linear backwards infinite;
+    }
+  }
+
+  &.swiper-slide-active {
+    .matrix-desc {
+      animation-name: fade-in;
+
+      @for $i from 1 through 6 {
+        &:nth-of-type(#{$i}) {
+          animation-delay: 0.3s * $i;
+        }
+      }
+    }
+
+    .shield {
+      animation-name: zoom-out-in;
+    }
+
+    .halo {
+      animation-name: halo-circle;
+
+      &:last-child {
+        animation-delay: 3.6s;
+      }
+    }
+  }
+}

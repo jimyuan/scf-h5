@@ -1,0 +1,274 @@
+@charset 'UTF-8';
+
+@include define-animate(float-y) {
+  from {
+    transform: translateY(-20%);
+  }
+
+  to {
+    transform: translateY(20%);
+  }
+}
+
+@include define-animate(circle-scene) {
+  to {
+    transform: rotateY(1turn);
+  }
+}
+
+$v: (circle-a, circle-b, circle-c);
+@each $c in $v {
+  @include define-animate($c) {
+    $d: 60deg * index($v, $c);
+    from {
+      transform: rotateY($d) rotateZ(0turn);
+    }
+    to {
+      transform: rotateY($d) rotateZ(1turn);
+    }
+  }
+}
+
+@include define-animate(zoom-out-in) {
+  from {
+    transform: scale3d(5 ,5, 5);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+@include define-animate(zoom-in) {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@include define-animate(swing-y) {
+  from {
+    transform-origin: left;
+    transform: perspective(600px) rotateY(-30deg);
+  }
+
+  to {
+    transform-origin: right;
+    transform: perspective(600px) rotateY(30deg);
+  }
+}
+
+@include define-animate(slide-left-in) {
+  from {
+    transform: translateX(-200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@include define-animate(slide-right-in) {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@include define-animate(slide-top-in) {
+  from {
+    transform: translateY(-200%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@include define-animate(laser-ray) {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(520%);
+  }
+}
+
+@include define-animate(circle-z) {
+  from {
+    transform: rotateZ(0turn);
+  }
+  to {
+    transform: rotateZ(1turn);
+  }
+}
+
+@include define-animate(poly-line) {
+  from {
+    transform: rotateY(20deg) rotateX(10deg);
+  }
+  to {
+    transform: rotateY(-20deg) rotateX(-10deg);
+  }
+}
+
+@include define-animate(circle-z30) {
+  from {
+    transform: translateZ(-100px) scale3d(1.2, 1.2, 1) rotateX(30deg) rotateZ(0turn);
+  }
+  to {
+    transform: translateZ(-100px) scale3d(1.2, 1.2, 1) rotateX(30deg) rotateZ(1turn);
+  }
+}
+
+@include define-animate(laser-through) {
+  from {
+    transform: translateX(-300%);
+  }
+
+  to {
+    transform: translateX(500%);
+    opacity: 0.8;
+  }
+}
+
+@include define-animate(circle-arc) {
+  from {
+    transform: rotateX(0turn);
+  }
+
+  to {
+    transform: rotateX(0.5turn);
+  }
+}
+
+@include define-animate(fade-in) {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@include define-animate(slide-bottom-in) {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+// 陨石群散开动画
+@include define-animate(mtr-1) {
+  to {
+    transform: translate3d(-300%, 60px, 0) rotateZ(1.8turn);
+  }
+}
+
+@include define-animate(mtr-2) {
+  to {
+    transform: translate3d(-10%, 300%, 0) rotateZ(-1turn);
+  }
+}
+
+@include define-animate(mtr-3) {
+  to {
+    transform: translate3d(100%, -300%, 0);
+  }
+}
+
+@include define-animate(mtrs-1) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(30%, 60%, 0) scaleX(0.6) scaleY(0.6);
+  }
+}
+
+@include define-animate(mtrs-2) {
+  from {
+    opacity: 1;
+    transform: scaleX(0.6) scaleY(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(150%, 380%, 0) rotateZ(-0.6turn) scaleX(2) scaleY(2);
+  }
+}
+
+// 字母左右穿插
+@include define-animate(subs-out-down) {
+  from {
+    transform: translateY(-1000%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@include define-animate(subs-out-up) {
+  from {
+    transform: translateY(1000%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+// 地球亮起
+@include define-animate(earth-lights) {
+  to {
+    filter: contrast(100%) brightness(250%);
+  }
+}
+
+@include define-animate(halo-circle) {
+  from {
+    transform: translateY(140%) scale(0.1);
+  }
+
+  20% {
+    transform: translateY(0) scale(1.1);
+  }
+
+  to {
+    transform: translateY(-100%) scale(1);
+  }
+}
+
+@include define-animate(fade-in-left) {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@include define-animate(stroke-path) {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@include define-animate(direct-r) {
+  to {
+    transform: translateX(40%);
+  }
+}

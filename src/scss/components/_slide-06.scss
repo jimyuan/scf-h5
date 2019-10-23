@@ -1,0 +1,136 @@
+@charset 'UTF-8';
+
+// 供应链金融
+.slide-06 {
+  // 舞台
+  .cross-cirle {
+    @include size(200px);
+    @include absolute(top 25% left 50%);
+
+    @media screen and (max-device-width: 320px) {
+      @include size(220px);
+    }
+
+    transform: translate3d(-50%, -20px, 200px) rotateX(75deg) rotateY(0deg) rotateZ(15deg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    z-index: z('tip-arrow');
+  }
+
+  .ebk-logo {
+    @include absolute(top 50% left 50%);
+
+    width: 50px;
+    transform: translate3d(-50%, -50%, 0) rotateX(-75deg);
+  }
+  // 环组
+  .circle-group {
+    @include abs-layout;
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    animation: infinite linear 11s;
+  }
+  // 单环
+  .single-circle {
+    @include abs-layout;
+
+    will-change: transform;
+    border-radius: 50%;
+    border:3px solid #d4371d;
+    background: url('assets/scf-circle.png') no-repeat 0 / cover;
+    animation: infinite linear 0s 2s;
+  }
+
+  @for $sc from 1 through 3 {
+    .single-circle:nth-child(#{$sc}) {
+      transform: rotateY(60deg * $sc);
+    }
+  }
+
+  // 金融产品摇摆文字
+  .scf-label {
+    @include absolute(left 50% top 52%);
+
+    width: 60%;
+    margin-left: -25%;
+    animation: 9s 0.5s infinite alternate backwards;
+  }
+
+  .finn-tag {
+    @include absolute;
+
+    will-change: transform;
+    transition: transform 0.4s;
+
+    &:nth-of-type(1) {
+      left: percentage(32 / 375);
+      bottom: percentage(152 / 667);
+      transform: translateX(-200%);
+    }
+
+    &:nth-of-type(2) {
+      left: percentage(86 / 375);
+      bottom: percentage(110 / 667);
+      transform: translateX(-200%);
+    }
+
+    &:nth-of-type(3) {
+      right: percentage(62 / 375);
+      bottom: percentage(164 / 667);
+      transform: translateX(200%);
+    }
+
+    &:nth-of-type(4) {
+      right: percentage(28 / 375);
+      bottom: percentage(104 / 667);
+      transform: translateX(200%);
+    }
+  }
+
+  // ----------- 动画定义 -----------  //
+  &.swiper-slide-active {
+    .circle-group {
+      animation-name: circle-scene;
+    }
+
+    .single-circle:nth-child(1) {
+      animation-name: circle-a;
+      animation-duration: 5.1s;
+    }
+
+    .single-circle:nth-child(2) {
+      animation-name: circle-b;
+      animation-duration: 6.3s;
+    }
+
+    .single-circle:nth-child(3) {
+      animation-name: circle-c;
+      animation-duration: 5.7s;
+    }
+
+    .scf-label {
+      animation-name: swing-y;
+    }
+
+    .finn-tag {
+      transform: translateX(0);
+    }
+
+    .finn-tag:nth-of-type(1) {
+      transition-delay: 0.5s;
+    }
+
+    .finn-tag:nth-of-type(2) {
+      transition-delay: 0.7s;
+    }
+
+    .finn-tag:nth-of-type(3) {
+      transition-delay: 0.9s;
+    }
+
+    .finn-tag:nth-of-type(4) {
+      transition-delay: 1s;
+    }
+  }
+}

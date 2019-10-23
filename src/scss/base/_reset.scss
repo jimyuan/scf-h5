@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+html {
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  font-family: $font-family;
+}
+
+#app::after {
+  @include size(38px, 24px);
+  @include absolute(left 50% bottom 2%);
+
+  content: '';
+  display: block;
+  margin-left: -18px;
+  z-index: z('tip-arrow');
+  background: url('./assets/arrow-down.png') no-repeat 0 0 / 100% auto;
+  animation: float-y 1.5s infinite alternate linear;
+}
+
+#app.no-arrow::after {
+  display: none;
+}
+
+.swiper-container {
+  @include abs-layout;
+
+  overflow: hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.swiper-wrapper {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.swiper-slide-active > section {
+  @include abs-layout;
+  perspective: 700px;
+  /* animation: zoom-out-in 0.5s ease-out; */
+}
+
+// 13 张 slide 背景定义 (10-12为同一背景)
+@for $i from 1 through 13 {
+  .swiper-slide:nth-child(#{$i}) {
+    $bg: 1;
+    @if $i < 10 or $i > 12 { $bg: $i }
+    @else { $bg: 10 }
+    background: url('./assets/slide-#{$bg}-bg.jpg') no-repeat center / cover;
+  }
+}
+
+.sp-tag {
+  display: inline-block;
+  will-change: transform;
+  background-image: linear-gradient(to right, #eb663c, #d3361c);
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+  padding: 0 8px;
+  opacity: 0.85;
+}
+
+.sp-tag-lg {
+  font-size: 20px;
+  line-height: 45px;
+  padding: 0 12px;
+}
+
+// Matrix Plus title
+.mp {
+  font-size: 18px;
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+  padding: 78px 0 0.2em;
+  font-weight: normal;
+  background: linear-gradient(to top, #fff 2px, transparent 0) no-repeat 0 bottom / 2.5em auto;
+}
+
+.motion-text {
+  font-size: 32px;
+  line-height: 1.2;
+  display: block;
+}
+
+// 需要 zoom in 的场景
+.swiper-slide-active > .zoom-in {
+  animation: zoom-out-in 0.5s ease-out;
+}
+
+// 背景音乐
+.control {
+  @include size(24px);
+  @include absolute(top 1em right 1em);
+
+  border: 1px solid #fff;
+  z-index: 1024;
+  border-radius: 50%;
+  background: url('./assets/music-note.png') no-repeat center / 80%;
+  animation: 3s infinite circle-z linear;
+
+  &.off {
+    background-image: url('./assets/music-note-off.png');
+    animation: none;
+  }
+
+  &.off::before {
+    @include size(24px);
+    @include absolute(left -150%);
+
+    content: '';
+    z-index: 1020;
+    background: url('./assets/arrow-right.png') no-repeat center / 50%;
+    animation: direct-r 1s linear infinite alternate;
+  }
+}

@@ -1,0 +1,137 @@
+@charset 'UTF-8';
+
+.slide-02 {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  .planets {
+    @include abs-layout;
+
+    > img {
+      position: absolute;
+      will-change: transform;
+      animation: 10s infinite alternate;
+
+      &:nth-child(1) {
+        width: 44px;
+        top: percentage(680 / 1204);
+        left: percentage(250 / 750);
+      }
+
+      &:nth-child(2) {
+        width: 60px;
+        top: percentage(492 / 1204);
+        right: -20px;
+      }
+
+      &:nth-child(3) {
+        width: 146px;
+        bottom: percentage(70 / 1204);
+        right: -40px;
+      }
+    }
+  }
+
+  .polygon-line {
+    @include abs-layout;
+
+    path {
+      fill: none;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      stroke-linecap: round;
+      stroke-linejoin: miter;
+      stroke-width: 2px;
+      animation: 5s linear both;
+    }
+
+    circle {
+      animation: 1s linear both;
+    }
+  }
+
+  .motion-text {
+    font-size: 25px;
+    will-change: transform;
+    animation: both 1s ease-out;
+
+    + span {
+      font-size: 14px;
+      will-change: transform;
+      animation: both 2s ease-out;
+    }
+  }
+
+  .sub-part1 {
+    @include absolute(top percentage(172 / 1204) left percentage(162 / 750));
+  }
+
+  .sub-part2 {
+    @include absolute(bottom percentage(300 / 1204) right percentage(64 / 750));
+
+    text-align: right;
+  }
+
+  &.swiper-slide-active {
+    .planets {
+      > img {
+        animation-name: float-y;
+
+        &:nth-child(2) {
+          animation-delay: -2s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: -5s;
+        }
+      }
+    }
+
+    .polygon-line path {
+      animation-name: stroke-path;
+    }
+
+    .polygon-line circle {
+      animation-name: fade-in;
+
+      &.bc-1 {
+        animation-delay: 0s;
+      }
+      &.bc-2 {
+        animation-delay: 1.2s;
+      }
+      &.bc-3 {
+        animation-delay: 1.7s;
+      }
+      &.bc-4 {
+        animation-delay: 2.6s;
+      }
+      &.bc-5 {
+        animation-delay: 3.5s;
+      }
+    }
+
+    .motion-text {
+      animation-name: fade-in-left;
+
+      + span {
+        animation-name: fade-in-left;
+      }
+    }
+    // 字幕延时调整
+    .sub-part1 > .motion-text {
+      animation-delay: 0.5s;
+
+      & + span {
+        animation-delay: 1s;
+      }
+    }
+    .sub-part2 > .motion-text {
+      animation-delay: 2.5s;
+
+      & + span {
+        animation-delay: 3s;
+      }
+    }
+  }
+}

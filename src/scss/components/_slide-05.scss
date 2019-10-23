@@ -1,0 +1,109 @@
+@charset 'UTF-8';
+
+.slide-05 {
+  .prod-system {
+    @include size(140px);
+    @include absolute(left 50% top 50%);
+
+    border-radius: 50%;
+    transform: translate3d(-50%, -60%, 0);
+    background: rgba($high-light, 0.85);
+    font-size: 18px;
+    text-align: center;
+
+    > span {
+      display: inline-block;
+      padding-top: 3em;
+    }
+  }
+
+  .bubs-logi,
+  .bubs-trade {
+    @include size(108px);
+
+    img {
+      width: 100%;
+    }
+
+    > div {
+      @include size(52px);
+      @include absolute(top 0 left 0);
+
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: transform 1s 0.5s $timing, opacity 1.5s;
+
+      &::before {
+        @include absolute(left -1em right -1em bottom -20px);
+
+        content: attr(data-title);
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &::after {
+        @include absolute(left -1em right -1em bottom -40px);
+
+        content: attr(data-desc);
+        font-size: 12px;
+        text-align: center;
+        color: #bbb;
+      }
+    }
+  }
+
+  .bubs-logi {
+    @include absolute(right percentage(194 / 750) top percentage(212 / 1204));
+  }
+
+  .bubs-trade {
+    @include absolute(left percentage(195 / 750) bottom percentage(330 / 1204));
+  }
+
+  &.swiper-slide-active {
+    .bubs-logi {
+      > div {
+        opacity: 1;
+      }
+
+      > div:nth-of-type(1) {
+        transform: translate3d(-120px, -35px, 0);
+      }
+
+      > div:nth-of-type(2) {
+        transform: translate3d(-34px, -78px, 0);
+      }
+
+      > div:nth-of-type(3) {
+        transform: translate3d(92px, -74px, 0);
+      }
+
+      > div:nth-of-type(4) {
+        transform: translate3d(128px, 36px, 0);
+      }
+    }
+
+    .bubs-trade {
+      > div {
+        opacity: 1;
+      }
+
+      > div:nth-of-type(1) {
+        transform: translate3d(-60px, -42px, 0);
+      }
+
+      > div:nth-of-type(2) {
+        transform: translate3d(-62px, 104px, 0);
+      }
+
+      > div:nth-of-type(3) {
+        transform: translate3d(80px, 144px, 0);
+      }
+
+      > div:nth-of-type(4) {
+        transform: translate3d(176px, 80px, 0);
+      }
+    }
+  }
+}

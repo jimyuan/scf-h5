@@ -1,0 +1,153 @@
+@charset 'UTF-8';
+
+.slide-01 {
+  .earth-surface {
+    @include absolute(left 0 right 0 bottom 0);
+
+    height: 172px;
+    background: url('./assets/earth-dark.png') no-repeat center 0 / cover;
+    will-change: filter;
+    animation: 2s 2s linear forwards;
+  }
+
+  .subs-part1 {
+    will-change: opacity;
+    animation: 0.5s 2s linear reverse forwards;
+
+    > span {
+      position: absolute;
+      width: 32px;
+      will-change: transform;
+      animation: 0.3s 0.5s $timing both;
+
+      &:first-of-type {
+        left: 38%;
+        top: percentage(452 / 1204);
+      }
+
+      &:last-of-type {
+        right: 38%;
+        top: percentage(242 / 1204);
+      }
+    }
+    // 竖光
+    > img  {
+      @include absolute(left 50% top 66px);
+
+      width: 128px;
+      margin-left: -64px;
+      will-change: transform;
+      animation: 0.5s ease-out;
+    }
+  }
+
+  .subs-part2 {
+    > span {
+      position: absolute;
+      width: 200px;
+      animation: 0.3s 3s $timing both;
+
+      &:first-of-type {
+        left: percentage(60 / 375);
+        top: percentage(384 / 1204);
+      }
+
+      &:last-of-type {
+        right: percentage(60 / 375);
+        top: percentage(485 / 1204);
+      }
+    }
+
+    // 水平光
+    > img  {
+      @include absolute(top percentage(460 / 1204));
+
+      width: 100%;
+      will-change: transform;
+      animation: 0.5s 3s ease-out both;
+    }
+  }
+
+  .meteors {
+    @include size(68px, 62px);
+    @include absolute(top 50% left 50%);
+
+    margin-left: -34px;
+    margin-top: -30px;
+    animation: 10s 5s linear infinite alternate both;
+
+    > img {
+      position: absolute;
+      will-change: transform;
+      animation: 4s 0.5s $timing forwards;
+    }
+  }
+
+  &.swiper-slide-active {
+    .earth-surface {
+      animation-name: earth-lights;
+    }
+
+    .meteors {
+      animation-name: float-y;
+    }
+
+    .mtr-1 {
+      width: 36px;
+      animation-name: mtr-1;
+    }
+
+    .mtr-2 {
+      width: 70px;
+      animation-name: mtr-2;
+    }
+
+    .mtr-3 {
+      width: 68px;
+      animation-name: mtr-3;
+    }
+
+    .mtrs-1 {
+      width: 150px;
+      margin-left: -60px;
+      opacity: 0;
+      animation-name: mtrs-1;
+    }
+
+    .mtrs-2 {
+      width: 56px;
+      opacity: 0;
+      animation-name: mtrs-2;
+    }
+
+    .subs-part1 {
+      animation-name: fade-in;
+
+      > img {
+        animation-name: slide-top-in;
+      }
+
+      > span:first-of-type {
+        animation-name: subs-out-down;
+      }
+
+      > span:last-of-type {
+        animation-name: subs-out-up;
+      }
+    }
+
+    .subs-part2 {
+      > img {
+        animation-name: slide-left-in;
+      }
+
+      > span:first-of-type {
+        animation-name: slide-left-in;
+      }
+
+      > span:last-of-type {
+        animation-name: slide-right-in;
+      }
+    }
+  }
+}

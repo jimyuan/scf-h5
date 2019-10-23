@@ -1,0 +1,75 @@
+@charset 'UTF-8';
+
+.slide-10 {
+  text-align: center;
+
+  h2 {
+    + p {
+      margin: 48px auto 0;
+      font-size: 12px;
+      line-height: 2;
+      width: 85%;
+      text-align: justify;
+    }
+  }
+
+  .intro {
+    @include size(85%, 170px);
+    margin: 38px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    list-style-type: none;
+
+    > li {
+      $cell: 65px / 2;
+
+      width: 48%;
+      height: 66px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.5;
+      will-change: opacity;
+      animation: 1s linear both;
+
+      &:nth-child(n+3) {
+        margin-top: 30px;
+      }
+
+      i {
+        @include size($cell);
+
+        display: block;
+        margin: auto;
+        background: url('./assets/matrix-icons.png') no-repeat;
+        background-size: auto $cell;
+        margin-bottom: 0.2em;
+        will-change: transform;
+        animation: 0.8s 2s reverse;
+      }
+
+      @for $j from 1 through 4 {
+        &:nth-child(#{$j}) i {
+          background-position: $cell * (1 - $j) 0;
+        }
+      }
+    }
+  }
+  &.swiper-slide-active {
+    .intro {
+      > li {
+        animation-name: fade-in;
+      }
+      @for $i from 1 through 4 {
+        > li:nth-child(#{$i}) {
+          animation-delay: 0.3s * $i;
+        }
+
+        i {
+          animation-name: circle-scene;
+        }
+      }
+    }
+  }
+}
