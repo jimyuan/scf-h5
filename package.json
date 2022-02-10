@@ -24,7 +24,7 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "sass-loader": "^6.0.6",
